@@ -41,15 +41,18 @@ class ComposeBasicsActivity : ComponentActivity() {
     @Composable
     private fun Greeting(name: String) {
         val extended = remember { mutableStateOf(false) }
+
+        val extraPadding  = if (extended.value) 48.dp else 0.dp
+
         Surface(color = MaterialTheme.colors.primary,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)) {
-            Row(modifier = Modifier.padding(24.dp)) {
+            Row(modifier = Modifier.padding(all = 24.dp)) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(text = "Hello,")
                     Text(text = name)
                 }
-                
-                OutlinedButton(
+
+                OutlinedButton( modifier = Modifier.padding(bottom = extraPadding),
                     onClick = { extended.value = !extended.value }
                 )
                 {
