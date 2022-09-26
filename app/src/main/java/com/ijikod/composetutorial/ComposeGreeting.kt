@@ -1,8 +1,5 @@
 package com.ijikod.composetutorial
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
@@ -16,18 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 
-class ComposeBasicsActivity : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ComposeTutorialTheme { MyApp() }
-        }
-    }
-
+class ComposeGreeting {
 
     @Composable
-    private fun MyApp(names: List<String> = listOf("World", "Compose")) {
+    fun MyApp(names: List<String> = listOf("World", "Compose")) {
         // A surface container using the 'background' color from the theme
         Surface(color = MaterialTheme.colors.background) {
             Column(modifier = Modifier.padding(vertical = 4.dp)) {

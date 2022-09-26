@@ -20,16 +20,25 @@ class StartActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeTutorialTheme {
-                MyStartScreen()
+                MyApp()
             }
         }
     }
 
+    @Composable
+    private fun MyApp(){
+        var showStartScreen by remember { mutableStateOf(true) }
+
+        if (showStartScreen) {
+            MyStartScreen(onContinueClicked = {showStartScreen = false })
+        } else {
+            ComposeGreeting().MyApp()
+        }
+    }
 
 
     @Composable
-    private fun MyStartScreen(){
-        var showStartScreen by remember { mutableStateOf(true) }
+    private fun MyStartScreen(onContinueClicked : () -> Unit){
 
         Surface {
             Column(modifier = Modifier.fillMaxSize(),
@@ -38,19 +47,18 @@ class StartActivity : ComponentActivity() {
                 
                 Text(text = "Welcome to Basics Codelab")
                 Button(modifier = Modifier.padding(all = 24.dp),
-                    onClick = { showStartScreen =  false }) {
+                    onClick = onContinueClicked ) {
                     Text(text = "Continue")
                 }
             }
         }
-
     }
 
     @Preview(showBackground = true, widthDp = 320, heightDp = 320)
     @Composable
     fun StartPreview(){
         ComposeTutorialTheme {
-            MyStartScreen()
+            MyStartScreen(onContinueClicked = {})
         }
     }
 }
