@@ -1,6 +1,8 @@
 package com.ijikod.composetutorial
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
@@ -16,14 +18,14 @@ import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 class ComposeGreeting {
 
     @Composable
-    fun MyApp(names: List<String> = listOf("World", "Compose")) {
+    fun MyApp(names: List<String> = List(1000) { "$it" }) {
         // A surface container using the 'background' color from the theme
         Surface(color = MaterialTheme.colors.background) {
-            Column(modifier = Modifier.padding(vertical = 4.dp)) {
-                for (name in names) {
-                    Greeting(name = name)
+                LazyColumn(modifier = Modifier.padding(vertical = 4.dp)){
+                    items(names) {
+                        Greeting(name = it)
+                    }
                 }
-            }
         }
     }
 
