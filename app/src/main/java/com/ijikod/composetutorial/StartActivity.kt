@@ -8,6 +8,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +28,7 @@ class StartActivity : ComponentActivity() {
 
     @Composable
     private fun MyApp(){
-        var showStartScreen by remember { mutableStateOf(true) }
+        var showStartScreen by rememberSaveable { mutableStateOf(true) }
 
         if (showStartScreen) {
             MyStartScreen(onContinueClicked = {showStartScreen = false })
