@@ -1,5 +1,6 @@
 package com.ijikod.composetutorial
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -12,6 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
@@ -48,7 +50,9 @@ class ComposeGreeting {
                 Column(modifier = Modifier.weight(1f)
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))) {
                     Text(text = "Hello,")
-                    Text(text = name)
+                    Text(text = name, style = MaterialTheme.typography.h4.copy(
+                        fontWeight = FontWeight.ExtraBold
+                    ))
                 }
 
                 OutlinedButton( modifier = Modifier.padding(bottom = extraPadding.coerceAtLeast(0.dp)),
@@ -63,6 +67,7 @@ class ComposeGreeting {
 
     }
 
+    @Preview(showBackground = true, widthDp = 320, uiMode = UI_MODE_NIGHT_YES, name = "Text Preview Night")
     @Preview(showBackground = true, name = "Text Preview", widthDp = 320)
     @Composable
     fun DefaultPreview() {
