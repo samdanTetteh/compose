@@ -7,10 +7,11 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Expand
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -47,7 +48,8 @@ class ComposeGreeting {
         Surface(color = MaterialTheme.colors.primary,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)) {
             Row(modifier = Modifier.padding(all = 24.dp)) {
-                Column(modifier = Modifier.weight(1f)
+                Column(modifier = Modifier
+                    .weight(1f)
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))) {
                     Text(text = "Hello,")
                     Text(text = name, style = MaterialTheme.typography.h4.copy(
@@ -55,12 +57,9 @@ class ComposeGreeting {
                     ))
                 }
 
-                OutlinedButton( modifier = Modifier.padding(bottom = extraPadding.coerceAtLeast(0.dp)),
-                    onClick = { extended = !extended }
-                )
-
-                {
-                    Text( if (extended)  "Show less" else "Show more" )
+                IconButton(onClick = { extended = !extended }) {
+                    Icon(imageVector = if (extended) Icons.Filled.Expand else Icons.Filled.ExpandMore,
+                        contentDescription = if (extended) "Show less" else "Show more" )
                 }
             }
         }
