@@ -50,7 +50,6 @@ class StartActivity : ComponentActivity() {
                 Button(modifier = Modifier.padding(all = 24.dp),
                     onClick = onContinueClicked ) {
                     Text(text = "Continue")
-
                 }
             }
         }
