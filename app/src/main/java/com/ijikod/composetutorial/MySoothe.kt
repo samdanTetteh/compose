@@ -1,14 +1,20 @@
 package com.ijikod.composetutorial
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.Typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
@@ -47,6 +53,31 @@ class MySoothe {
                 contentDescription = null)
         })
     }
+
+
+
+    @Composable
+    private fun AlignYourBodyElement(modifier: Modifier = Modifier, alignText: String){
+        Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(painter = painterResource(id = R.drawable.ab1_inversions), 
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.clip(CircleShape).size(88.dp))
+
+
+            Text(text = alignText, style = MaterialTheme.typography.h5,
+                modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp))
+        }
+    }
+
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2 )
+    @Composable
+    fun AlignYourBodyElementPreview(){
+        AlignYourBodyElement(modifier = Modifier.padding(8.dp),
+            stringResource(R.string.ab1_inversions))
+    }
+
 
     @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
     @Composable
