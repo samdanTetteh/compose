@@ -3,6 +3,8 @@ package com.ijikod.composetutorial
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.Typography
@@ -17,6 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ijikod.composetutorial.data.AlignYourBody
+import com.ijikod.composetutorial.data.AlignYourBodySampleData
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 
 class MySoothe {
@@ -57,9 +61,11 @@ class MySoothe {
 
 
     @Composable
-    private fun AlignYourBodyElement(modifier: Modifier = Modifier, alignText: Int){
+    private fun AlignYourBodyElement(modifier: Modifier = Modifier,
+                                     drawable: Int,
+                                     text: Int){
         Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-            Image(painter = painterResource(id = R.drawable.ab1_inversions), 
+            Image(painter = painterResource(drawable),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -67,7 +73,7 @@ class MySoothe {
                     .size(88.dp))
 
 
-            Text(text = stringResource(id = alignText), style = MaterialTheme.typography.subtitle2,
+            Text(text = stringResource(id = text), style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp))
         }
     }
@@ -89,8 +95,28 @@ class MySoothe {
             }
         }
     }
-
-
+    
+    
+    
+    @Composable
+    private fun AlignYourBodyRow(modifier: Modifier = Modifier,
+                                 alignYourBodyData: List<AlignYourBody>){
+        LazyRow(modifier = modifier) {
+            items(alignYourBodyData){ item ->
+                AlignYourBodyElement(drawable = item.imageDrawable,
+                    text = item.text)
+            }
+        }
+    }
+    
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+    @Composable
+    fun AlignYourBodyRowPreview(){
+        ComposeTutorialTheme {
+            AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+        }
+    }
+    
     @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
     @Composable
     fun FavouriteCollectionCardPreview() {
@@ -106,7 +132,9 @@ class MySoothe {
     @Composable
     fun AlignYourBodyElementPreview(){
         ComposeTutorialTheme {
-            AlignYourBodyElement(modifier = Modifier.padding(8.dp),
+            AlignYourBodyElement(
+                modifier = Modifier.padding(8.dp),
+                R.drawable.ab1_inversions,
                 R.string.ab1_inversions)
         }
     }
