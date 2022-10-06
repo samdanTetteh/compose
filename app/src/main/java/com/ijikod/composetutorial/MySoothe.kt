@@ -57,25 +57,58 @@ class MySoothe {
 
 
     @Composable
-    private fun AlignYourBodyElement(modifier: Modifier = Modifier, alignText: String){
+    private fun AlignYourBodyElement(modifier: Modifier = Modifier, alignText: Int){
         Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
             Image(painter = painterResource(id = R.drawable.ab1_inversions), 
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.clip(CircleShape).size(88.dp))
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(88.dp))
 
 
-            Text(text = alignText, style = MaterialTheme.typography.h5,
+            Text(text = stringResource(id = alignText), style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp))
         }
     }
 
+    @Composable
+    private fun FavouriteCollectionCard(modifier: Modifier = Modifier,
+    imageDrawable: Int, text: Int) {
+        Surface(modifier = Modifier, shape = MaterialTheme.shapes.small) {
+            Row(verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.width(192.dp)) {
+                Image(painter = painterResource(imageDrawable),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(56.dp))
+                
+                Text(text = stringResource(text),
+                    style= MaterialTheme.typography.subtitle2,
+                modifier = Modifier.padding(horizontal = 16.dp))
+            }
+        }
+    }
 
-    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2 )
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+    @Composable
+    fun FavouriteCollectionCardPreview() {
+        ComposeTutorialTheme {
+            FavouriteCollectionCard(Modifier.padding(8.dp),
+                R.drawable.fc2_nature_meditations,
+                R.string.fc2_nature_meditations)
+        }
+    }
+
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
     @Composable
     fun AlignYourBodyElementPreview(){
-        AlignYourBodyElement(modifier = Modifier.padding(8.dp),
-            stringResource(R.string.ab1_inversions))
+        ComposeTutorialTheme {
+            AlignYourBodyElement(modifier = Modifier.padding(8.dp),
+                R.string.ab1_inversions)
+        }
     }
 
 
