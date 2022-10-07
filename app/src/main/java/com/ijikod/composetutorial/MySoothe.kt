@@ -1,9 +1,13 @@
 package com.ijikod.composetutorial
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.widget.GridLayout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -21,6 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ijikod.composetutorial.data.AlignYourBody
 import com.ijikod.composetutorial.data.AlignYourBodySampleData
+import com.ijikod.composetutorial.data.Favourite
+import com.ijikod.composetutorial.data.FavouriteCollectionData
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 
 class MySoothe {
@@ -108,6 +114,31 @@ class MySoothe {
                 AlignYourBodyElement(drawable = item.imageDrawable,
                     text = item.text)
             }
+        }
+    }
+
+
+    @Composable
+    private fun FavouriteCollectionGrid(modifier: Modifier = Modifier, data: List<Favourite>){
+        LazyHorizontalGrid(rows = GridCells.Fixed(2),
+            modifier = modifier.height(120.dp),
+        contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ){
+            items(data) { items ->
+                FavouriteCollectionCard(Modifier.height(56.dp),
+                    imageDrawable = items.drawable,
+                    text = items.text)
+            }
+        }
+    }
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+    @Composable
+    fun FavouriteCollectinPreview(){
+        ComposeTutorialTheme {
+            FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
         }
     }
     
