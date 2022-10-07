@@ -101,7 +101,9 @@ class MySoothe {
     @Composable
     private fun AlignYourBodyRow(modifier: Modifier = Modifier,
                                  alignYourBodyData: List<AlignYourBody>){
-        LazyRow(modifier = modifier) {
+        LazyRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(16.dp)
+        ) {
             items(alignYourBodyData){ item ->
                 AlignYourBodyElement(drawable = item.imageDrawable,
                     text = item.text)
