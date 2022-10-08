@@ -2,6 +2,7 @@ package com.ijikod.composetutorial
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.widget.GridLayout
+import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,6 +30,7 @@ import com.ijikod.composetutorial.data.AlignYourBodySampleData
 import com.ijikod.composetutorial.data.Favourite
 import com.ijikod.composetutorial.data.FavouriteCollectionData
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
+import java.util.*
 
 class MySoothe {
 
@@ -40,10 +43,20 @@ class MySoothe {
 
 
     @Composable
-    private fun ContentScreen() {
-
+    private fun ContentScreen(modifier: Modifier = Modifier) {
+        Column(modifier) {
+            Spacer(Modifier.height(16.dp))
+            SearchBar(modifier = modifier.padding(16.dp))
+            Spacer(Modifier.height(16.dp))
+            HomeSection(title = R.string.align_your_body_title){
+                AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+            }
+            HomeSection(title = R.string.fav_collection_txt) {
+                FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+        }
     }
-
 
     @Composable
     private fun SearchBar(modifier: Modifier) {
@@ -134,9 +147,34 @@ class MySoothe {
         }
     }
 
+
+    @Composable
+    private fun HomeSection(@StringRes title: Int,
+        modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+        Column(modifier = modifier) {
+            Text(text = stringResource(title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.body1,
+                modifier = Modifier
+                    .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                    .padding(horizontal = 16.dp))
+
+            content()
+        }
+    }
+    
     @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
     @Composable
-    fun FavouriteCollectinPreview(){
+    fun HomeSectionPreview(){
+        ComposeTutorialTheme {
+            HomeSection(R.string.fc5_overwhelmed) {
+                AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+            }
+        }
+    }
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+    @Composable
+    fun FavouriteCollectionPreview(){
         ComposeTutorialTheme {
             FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
         }
@@ -181,7 +219,7 @@ class MySoothe {
 
 
 
-    @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES, name = "My Soothe content")
+    @Preview(widthDp = 360, heightDp = 640)
     @Composable()
     fun DefaultPreview(){
         ComposeTutorialTheme { MyApp() }

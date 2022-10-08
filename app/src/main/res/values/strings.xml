@@ -14,4 +14,7 @@
     <string name="fc3_stress_and_anxiety">Stress and Anxiety</string>
     <string name="fc4_self_message">Self Message</string>
     <string name="fc5_overwhelmed">Overwhelmed</string>
+
+    <string name="align_your_body_title">align you body</string>
+    <string name="fav_collection_txt">favorite collections</string>
 </resources>
