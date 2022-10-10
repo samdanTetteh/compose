@@ -10,7 +10,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.Typography
 import androidx.compose.material.icons.Icons
@@ -44,17 +46,17 @@ class MySoothe {
 
     @Composable
     private fun ContentScreen(modifier: Modifier = Modifier) {
-        Column(modifier) {
-            Spacer(Modifier.height(16.dp))
-            SearchBar(modifier = modifier.padding(16.dp))
-            Spacer(Modifier.height(16.dp))
+        Column(
+            modifier
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = 16.dp)) {
+            SearchBar(modifier = modifier.padding(horizontal = 16.dp))
             HomeSection(title = R.string.align_your_body_title){
                 AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
             }
             HomeSection(title = R.string.fav_collection_txt) {
                 FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 
