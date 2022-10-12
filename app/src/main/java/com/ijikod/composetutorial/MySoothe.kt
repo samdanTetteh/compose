@@ -168,7 +168,9 @@ class MySoothe {
 
     @Composable
     private fun SootheBottomNavigation(modifier: Modifier = Modifier){
-        BottomNavigation(modifier) {
+        BottomNavigation(
+            backgroundColor = MaterialTheme.colors.background,
+            modifier = modifier) {
             BottomNavigationItem(
                 icon = { Icon(imageVector = Icons.Default.Spa, contentDescription = null)},
                 selected = true, onClick = {}, label = { Text(text = stringResource(R.string.bottom_navigation_home))}
