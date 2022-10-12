@@ -1,7 +1,7 @@
 package com.ijikod.composetutorial
-
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import android.widget.GridLayout
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -14,7 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.material.Typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
@@ -24,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,12 +34,13 @@ import com.ijikod.composetutorial.data.FavouriteCollectionData
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 import java.util.*
 
-class MySoothe {
+class MySoothe{
 
     @Composable
     fun MyApp() {
-        Surface(color = MaterialTheme.colors.background) {
-            ContentScreen()
+        ComposeTutorialTheme {
+            Scaffold(bottomBar = { SootheBottomNavigation() })
+            { padding -> ContentScreen(Modifier.padding(padding)) }
         }
     }
 
