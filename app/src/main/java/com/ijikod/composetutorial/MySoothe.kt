@@ -1,7 +1,4 @@
 package com.ijikod.composetutorial
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -27,10 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.ijikod.composetutorial.data.AlignYourBody
-import com.ijikod.composetutorial.data.AlignYourBodySampleData
-import com.ijikod.composetutorial.data.Favourite
-import com.ijikod.composetutorial.data.FavouriteCollectionData
+import com.ijikod.composetutorial.data.DrawableStringPair
 import com.ijikod.composetutorial.ui.theme.ComposeTutorialTheme
 import java.util.*
 
@@ -52,10 +46,10 @@ class MySoothe{
                 .padding(vertical = 16.dp)) {
             SearchBar(modifier = modifier.padding(horizontal = 16.dp))
             HomeSection(title = R.string.align_your_body_title){
-                AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+                AlignYourBodyRow(alignYourBodyData = DrawableStringPair.alignYourBodySampleData)
             }
             HomeSection(title = R.string.fav_collection_txt) {
-                FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
+                FavouriteCollectionGrid(data = DrawableStringPair.favouriteDataSample)
             }
         }
     }
@@ -102,17 +96,17 @@ class MySoothe{
     @Composable
     private fun FavouriteCollectionCard(modifier: Modifier = Modifier,
     imageDrawable: Int, text: Int) {
-        Surface(modifier = Modifier, shape = MaterialTheme.shapes.small) {
+        Surface(modifier = modifier, shape = MaterialTheme.shapes.small) {
             Row(verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.width(192.dp)) {
+            modifier = modifier.width(192.dp)) {
                 Image(painter = painterResource(imageDrawable),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(56.dp))
+                    modifier = modifier.size(56.dp))
                 
                 Text(text = stringResource(text),
                     style= MaterialTheme.typography.subtitle2,
-                modifier = Modifier.padding(horizontal = 16.dp))
+                modifier = modifier.padding(horizontal = 16.dp))
             }
         }
     }
@@ -121,20 +115,20 @@ class MySoothe{
     
     @Composable
     private fun AlignYourBodyRow(modifier: Modifier = Modifier,
-                                 alignYourBodyData: List<AlignYourBody>){
+                                 alignYourBodyData: List<DrawableStringPair>){
         LazyRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(16.dp)
         ) {
             items(alignYourBodyData){ item ->
-                AlignYourBodyElement(drawable = item.imageDrawable,
-                    text = item.text)
+                AlignYourBodyElement(drawable = item.imageDrawable, text = item.text)
             }
         }
     }
 
 
     @Composable
-    private fun FavouriteCollectionGrid(modifier: Modifier = Modifier, data: List<Favourite>){
+    private fun FavouriteCollectionGrid(modifier: Modifier = Modifier,
+                                        data: List<DrawableStringPair>){
         LazyHorizontalGrid(rows = GridCells.Fixed(2),
             modifier = modifier.height(120.dp),
         contentPadding = PaddingValues(16.dp),
@@ -143,7 +137,7 @@ class MySoothe{
         ){
             items(data) { items ->
                 FavouriteCollectionCard(Modifier.height(56.dp),
-                    imageDrawable = items.drawable,
+                    imageDrawable = items.imageDrawable,
                     text = items.text)
             }
         }
@@ -194,7 +188,7 @@ class MySoothe{
     fun HomeSectionPreview(){
         ComposeTutorialTheme {
             HomeSection(R.string.fc5_overwhelmed) {
-                AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+                AlignYourBodyRow(alignYourBodyData = DrawableStringPair.alignYourBodySampleData)
             }
         }
     }
@@ -203,7 +197,7 @@ class MySoothe{
     @Composable
     fun FavouriteCollectionPreview(){
         ComposeTutorialTheme {
-            FavouriteCollectionGrid(data = FavouriteCollectionData.favouriteDataSample)
+            FavouriteCollectionGrid(data = DrawableStringPair.favouriteDataSample)
         }
     }
     
@@ -211,7 +205,7 @@ class MySoothe{
     @Composable
     fun AlignYourBodyRowPreview(){
         ComposeTutorialTheme {
-            AlignYourBodyRow(alignYourBodyData = AlignYourBodySampleData.alignBodySample)
+            AlignYourBodyRow(alignYourBodyData = DrawableStringPair.alignYourBodySampleData)
         }
     }
     
