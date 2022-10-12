@@ -16,7 +16,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.Typography
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,7 +44,6 @@ class MySoothe {
             ContentScreen()
         }
     }
-
 
     @Composable
     private fun ContentScreen(modifier: Modifier = Modifier) {
@@ -163,6 +164,29 @@ class MySoothe {
             content()
         }
     }
+
+
+    @Composable
+    private fun SootheBottomNavigation(modifier: Modifier = Modifier){
+        BottomNavigation(modifier) {
+            BottomNavigationItem(
+                icon = { Icon(imageVector = Icons.Default.Spa, contentDescription = null)},
+                selected = true, onClick = {}, label = { Text(text = stringResource(R.string.bottom_navigation_home))}
+            )
+            BottomNavigationItem(
+                icon = { Icon(imageVector = Icons.Default.AccountCircle, contentDescription = null )},
+                selected = false, onClick = {}, label = { Text(text = stringResource(R.string.bottom_navigation_profile))})
+        }
+    }
+
+
+    @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+    @Composable
+    fun BottomNavigationPreview(){
+        ComposeTutorialTheme {
+            SootheBottomNavigation()
+        }
+    }
     
     @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
     @Composable
@@ -221,7 +245,7 @@ class MySoothe {
 
 
 
-    @Preview(widthDp = 360, heightDp = 640)
+    @Preview(widthDp = 360, heightDp = 180)
     @Composable()
     fun DefaultPreview(){
         ComposeTutorialTheme { MyApp() }

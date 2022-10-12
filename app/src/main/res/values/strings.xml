@@ -17,4 +17,6 @@
 
     <string name="align_your_body_title">align you body</string>
     <string name="fav_collection_txt">favorite collections</string>
+    <string name="bottom_navigation_home">Home</string>
+    <string name="bottom_navigation_profile">Profile</string>
 </resources>
