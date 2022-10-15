@@ -63,7 +63,7 @@ object SampleData {
         ),
         Message(
             "Colleague",
-            "Previews are also interactive after enabling the experimental setting"
+            "Previews are also interactive after enabling the experimental setting."
         ),
         Message(
             "Colleague",

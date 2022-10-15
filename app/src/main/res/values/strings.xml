@@ -19,4 +19,6 @@
     <string name="fav_collection_txt">favorite collections</string>
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_profile">Profile</string>
+
+    <string name="glasses_taken_text">Your have had %1d glasses.</string>
 </resources>
