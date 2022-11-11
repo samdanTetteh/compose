@@ -22,4 +22,5 @@
 
     <string name="glasses_taken_text">Your have had %1d glasses.</string>
     <string name="add_one_btn_txt">Add one</string>
+    <string name="clear_water_count_txt">Clear water count</string>
 </resources>
