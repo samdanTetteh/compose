@@ -43,11 +43,11 @@ fun WellnessTaskItem(taskName: String,
 
 
 @Composable
-fun WellnessTaskItem(taskName: String, modifier: Modifier = Modifier){
+fun WellnessTaskItem(taskName: String, onCloseTask: () -> Unit, modifier: Modifier = Modifier){
     var checkedSate by rememberSaveable { mutableStateOf(false) }
 
     WellnessTaskItem(taskName = taskName,
-        onClose = { },
+        onClose = onCloseTask,
         checked = checkedSate,
         onItemChecked = {
             checkedSate = it
@@ -57,13 +57,15 @@ fun WellnessTaskItem(taskName: String, modifier: Modifier = Modifier){
 
 
 @Composable
-fun WellnessTasksList(modifier: Modifier = Modifier,
-                      list: List<WellnessTask> = remember {
-                          getWellnessTasks()
-                      }) {
+fun WellnessTasksList(
+    list: List<WellnessTask> = remember { getWellnessTasks() },
+    onCloseTask: (WellnessTask) -> Unit,
+    modifier: Modifier = Modifier,) {
     LazyColumn(modifier = modifier) {
         items(list) { task ->
-            WellnessTaskItem(taskName = task.label)
+            WellnessTaskItem(taskName = task.label, onCloseTask = {
+                onCloseTask(task)
+            })
         }
     }
 }
@@ -78,5 +80,5 @@ fun DefaultView(){
 @Preview(showBackground = true)
 @Composable
 fun WellnessTaskListPreview(){
-    WellnessTasksList()
+    WellnessTasksList(onCloseTask = {})
 }
