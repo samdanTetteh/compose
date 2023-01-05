@@ -62,7 +62,7 @@ fun WellnessTasksList(
     onCloseTask: (WellnessTask) -> Unit,
     modifier: Modifier = Modifier,) {
     LazyColumn(modifier = modifier) {
-        items(list) { task ->
+        items(items = list, key = { task -> task.id }) { task ->
             WellnessTaskItem(taskName = task.label, onCloseTask = {
                 onCloseTask(task)
             })
