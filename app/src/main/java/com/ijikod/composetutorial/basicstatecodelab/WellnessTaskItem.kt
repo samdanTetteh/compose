@@ -1,6 +1,5 @@
 package com.ijikod.composetutorial.basicstatecodelab
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ijikod.composetutorial.R
 import com.ijikod.composetutorial.data.WellnessTask
-import com.ijikod.composetutorial.data.getWellnessTasks
 
 @Composable
 fun WellnessTaskItem(taskName: String,
@@ -58,7 +56,10 @@ fun WellnessTaskItem(taskName: String, onCloseTask: () -> Unit, modifier: Modifi
 
 @Composable
 fun WellnessTasksList(
-    list: List<WellnessTask> = remember { getWellnessTasks() },
+    list: List<WellnessTask> = listOf(
+        WellnessTask(0, "Task # 0"),
+        WellnessTask(1, "Task # 1")
+    ),
     onCloseTask: (WellnessTask) -> Unit,
     modifier: Modifier = Modifier,) {
     LazyColumn(modifier = modifier) {
